@@ -128,12 +128,17 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#PREFIX" class="member-name-link">PREFIX</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>static final boolean</code></div>
+<div class="col-second even-row-color"><code><a href="#DEFAULT_FAIL_FAST" class="member-name-link">DEFAULT_FAIL_FAST</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Default value for Fail fast.</div>
+</div>
 <div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#SPRING_CLOUD_CONFIG_ENDPOINT" class="member-name-link">SPRING_CLOUD_CONFIG_ENDPOINT</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#PREFIX" class="member-name-link">PREFIX</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#SPRING_CLOUD_CONFIG_ENDPOINT" class="member-name-link">SPRING_CLOUD_CONFIG_ENDPOINT</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
 </div>
 <div class="inherited-list">
 <h3 id="fields-inherited-from-class-io.micronaut.http.client.HttpClientConfiguration">Fields inherited from class&nbsp;io.micronaut.http.client.HttpClientConfiguration</h3>
@@ -252,6 +257,21 @@ loadScripts(document, 'script');</script>
 <dd>
 <ul class="see-list">
 <li><a href="../../../../../constant-values.html#io.micronaut.discovery.spring.config.SpringCloudClientConfiguration.PREFIX">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="DEFAULT_FAIL_FAST">
+<h3>DEFAULT_FAIL_FAST</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">DEFAULT_FAIL_FAST</span></div>
+<div class="block">Default value for Fail fast.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../../constant-values.html#io.micronaut.discovery.spring.config.SpringCloudClientConfiguration.DEFAULT_FAIL_FAST">Constant Field Values</a></li>
 </ul>
 </dd>
 </dl>
@@ -406,7 +426,7 @@ loadScripts(document, 'script');</script>
 <h3>setFailFast</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setFailFast</span><wbr><span class="parameters">(boolean&nbsp;failFast)</span></div>
 <div class="block">If set to true an exception will be thrown if configuration is not found.
- Default value ().</div>
+ Default value (<a href="#DEFAULT_FAIL_FAST">false</a>).</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>failFast</code> - flag to fail fast</dd>
