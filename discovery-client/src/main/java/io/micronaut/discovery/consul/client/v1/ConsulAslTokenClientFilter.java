@@ -1,5 +1,5 @@
 /*
- * Copyright 2017-2020 original authors
+ * Copyright 2017-2024 original authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,25 +15,27 @@
  */
 package io.micronaut.discovery.consul.client.v1;
 
+import io.micronaut.context.annotation.BootstrapContextCompatible;
+import io.micronaut.context.annotation.Requires;
 import io.micronaut.core.util.Toggleable;
 import io.micronaut.discovery.consul.ConsulConfiguration;
-import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MutableHttpRequest;
-import io.micronaut.http.filter.ClientFilterChain;
+import io.micronaut.http.annotation.ClientFilter;
+import io.micronaut.http.annotation.RequestFilter;
 import io.micronaut.http.filter.HttpClientFilter;
-import org.reactivestreams.Publisher;
 
 import java.util.Optional;
 
 /**
  * A {@link HttpClientFilter} that adds the {@link #HEADER_CONSUL_TOKEN} header.
  *
- * @author Graeme Rocher
- * @since 1.0
- * @deprecated No longer used
+ * @author Denis Stepanov
+ * @since 4.6
  */
-@Deprecated(forRemoval = true, since = "4.5")
-public class ConsulAslTokenFilter implements HttpClientFilter, Toggleable {
+@ClientFilter(patterns = "/v1/**", serviceId = ConsulClient.SERVICE_ID)
+@Requires(beans = ConsulConfiguration.class)
+@BootstrapContextCompatible
+public class ConsulAslTokenClientFilter implements Toggleable {
 
     /**
      * Consult header token.
@@ -45,7 +47,7 @@ public class ConsulAslTokenFilter implements HttpClientFilter, Toggleable {
     /**
      * @param configuration The Consul configuration
      */
-    public ConsulAslTokenFilter(ConsulConfiguration configuration) {
+    public ConsulAslTokenClientFilter(ConsulConfiguration configuration) {
         this.configuration = configuration;
     }
 
@@ -54,10 +56,9 @@ public class ConsulAslTokenFilter implements HttpClientFilter, Toggleable {
         return configuration.getAslToken().isPresent();
     }
 
-    @Override
-    public Publisher<? extends HttpResponse<?>> doFilter(MutableHttpRequest<?> request, ClientFilterChain chain) {
+    @RequestFilter
+    void filterRequest(MutableHttpRequest<?> request) {
         Optional<String> aslToken = configuration.getAslToken();
         aslToken.ifPresent(token -> request.header(HEADER_CONSUL_TOKEN, token));
-        return chain.proceed(request);
     }
 }
